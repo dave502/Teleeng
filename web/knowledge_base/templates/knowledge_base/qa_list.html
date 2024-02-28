@@ -1,0 +1,39 @@
+
+{% extends 'knowledge_base/base.html' %}
+
+
+
+{% block content %}
+<div class="container mt-5">
+  <h3>Knowledge base</h3>
+  {% if object_list %}
+    <table class="table">
+      <tbody>
+    {% for qa in object_list %}
+    <tr>
+      <td >
+      <div class="p-2 mt-1 bg-light text-dark d-flex position-relative">
+      <h6> {{ qa.question }}</h6>
+      <a href="{% url 'knowledge_base:item_qa' pk=qa.pk %}" class="stretched-link">  </a>
+      </div>
+      <div>
+      {{ qa.answer }}
+      </div>
+      <div class="mt-4 position-relative">
+        <div class="position-absolute bottom-0 end-0">
+          <a href="{% url 'knowledge_base:edit_qa' pk=qa.pk %}" class="btn btn-outline-secondary btn-sm" role="button">Edit</a>
+          <a href="{% url 'knowledge_base:del_qa' pk=qa.pk %}" class="btn btn-outline-secondary btn-sm" role="button">Delete </a>
+        </div>
+      </div>
+      </td>
+     <tr>
+  {% endfor %}
+   </tbody>
+  </table>
+  {% endif %}
+
+  <div>
+    <a href="{% url 'knowledge_base:add_qa' %}" class="btn btn-secondary" role="button">Add</a>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h3>User {{ thread.user_id }} asks : {{ thread.question }}</h3>
+<!--
+  <b>Answer form knowledge base: </b><br><br>
+
+  {% for post in object.post_set.all %}
+    <div class="post">
+      {{ post.qa.question }}
+      {{ post.qa.answer }}
+      <p>{{ post.created_at }}</p>
+    </div>
+  {% endfor %} -->
+
+  <hr>
+
+  Предлагаемый ответ:<br>
+  Ответ
+
+  <h3>Edit answer</h3>
+  <form method="post" action="{% url 'forum:createpost' id=object.pk %}">
+    {% csrf_token %}
+    <textarea
+      rows="10" cols="60"
+      id="answer"
+      name="answer">
+      Default answer.
+    </textarea> <br>
+    <label for="save_answer">Save the answer</label>
+    <input type="checkbox" id="save_answer" name="save_answer" value="Bike">
+    <button type="submit">Send</button>
+  </form>
+
+  <form method="post">
+        {{ form }}
+  </form>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'knowledge_base/base.html' %}
+
+
+{% block title %}
+Update QA
+{% endblock %}
+
+{% block content %}
+
+    <div class="container mt-5">
+    <h3>Update QA</h3>
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="mt-3">
+            <span class="input-group-text">Question</span>
+            <textarea mt=2 class="form-control-plaintext" aria-label="With textarea" name="question" readonly>{{ qa.question}}</textarea>
+        </div>
+        <div class="mt-2">
+            <span class="input-group-text">Answer</span>
+            <textarea   class="form-control-plaintext" aria-label="With textarea" name="answer" readonly>{{ qa.answer}}</textarea>
+        </div>
+        <div class="mt-2">
+            <a href="{% url 'knowledge_base:edit_qa' pk=qa.pk %}" class="btn btn-secondary" role="button">  Edit </a>
+            <a href="{% url 'knowledge_base:del_qa' pk=qa.pk %}" class="btn btn-secondary" role="button">Delete </a>
+            <a href="{% url 'knowledge_base:list_qa' %}" class="btn btn-secondary" role="button">Cancel</a>
+        </div>
+    </form>
+   </div>
+{% endblock %}

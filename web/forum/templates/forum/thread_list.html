@@ -1,0 +1,12 @@
+
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+  {% for thread in object_list %}
+    <div class="thread">
+      {{ thread.created_at|date:'Y-m-d H:i' }} >>  <a href="{{ thread.get_absolute_url }}">{{ thread.user_id }} : {{ thread.question }}</a>
+    </div>
+  {% endfor %}
+{% endblock %}

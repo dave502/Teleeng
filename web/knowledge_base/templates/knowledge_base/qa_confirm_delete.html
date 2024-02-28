@@ -1,0 +1,24 @@
+{% extends 'knowledge_base/base.html' %}
+
+
+{% block title %}
+Confirm delete Question {{ qa.question }}
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+    <h3> Confirm delete question</h3>
+    <div>
+        {{ qa.question }}
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <div class="mt-2">
+            <button type="submit" class="btn btn-primary" >Delete</button>
+            <a href="{% url 'knowledge_base:list_qa' %}" class="btn btn-secondary" role="button">Cancel</a>
+        </div>
+    </form>
+   </div>
+{% endblock %}
